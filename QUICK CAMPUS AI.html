@@ -1,0 +1,4001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickCampus AI</title>
+
+<style>
+*{box-sizing:border-box}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(135deg,#f3e5f5,#fce4ec,#ede7f6);
+    color:#333;
+    min-height:100vh;
+    transition:.3s ease;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+    border:0;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.login-container{
+    width:100%;
+    max-width:480px;
+}
+
+.login-card{
+    background:#fff;
+    padding:35px;
+    border-radius:28px;
+    box-shadow:0 15px 45px rgba(106,27,154,.18);
+    text-align:center;
+}
+
+.login-logo{
+    width:90px;
+    height:90px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:white;
+}
+
+.login-card h1{
+    margin:0;
+    color:#7b1fa2;
+    font-size:32px;
+}
+
+.login-subtitle{
+    color:#777;
+    margin:10px 0 25px;
+}
+
+.login-form{
+    text-align:left;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    color:#5e2a68;
+    font-weight:700;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:14px;
+    border:2px solid #e1bee7;
+    border-radius:13px;
+    outline:none;
+    background:#fff;
+    color:#333;
+    font-size:15px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:#9c27b0;
+    box-shadow:0 0 0 3px rgba(156,39,176,.08);
+}
+
+.login-button{
+    width:100%;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+    font-size:17px;
+    font-weight:700;
+}
+
+.login-note{
+    font-size:12px;
+    color:#888;
+    margin-top:18px;
+    line-height:1.5;
+}
+
+.login-tools,
+.top{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:18px;
+}
+
+.login-tools button{
+    padding:10px 15px;
+    border-radius:20px;
+    background:#f3e5f5;
+    color:#7b1fa2;
+    font-weight:700;
+}
+
+/* =========================
+   MAIN APP
+========================= */
+
+#app{
+    display:none;
+}
+
+header{
+    background:linear-gradient(135deg,#6a1b9a,#9c27b0,#e91e63);
+    color:#fff;
+    text-align:center;
+    padding:35px 15px;
+    border-radius:0 0 30px 30px;
+    box-shadow:0 8px 25px rgba(106,27,154,.2);
+}
+
+header h1{
+    margin:5px;
+    font-size:38px;
+}
+
+header p{
+    margin:12px;
+}
+
+.top button{
+    background:#fff;
+    color:#7b1fa2;
+    padding:10px 15px;
+    border-radius:20px;
+    font-weight:700;
+}
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:15px;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:22px;
+    box-shadow:0 8px 25px rgba(100,50,130,.15);
+}
+
+h2{
+    color:#8e24aa;
+    margin-top:0;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-card{
+    background:linear-gradient(135deg,#f3e5f5,#fce4ec);
+}
+
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:20px;
+}
+
+.profile-avatar{
+    width:75px;
+    height:75px;
+    flex-shrink:0;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+    font-size:36px;
+}
+
+.profile-header h2{
+    margin:0;
+}
+
+.profile-header p{
+    margin:6px 0;
+    color:#777;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.profile-item{
+    padding:15px;
+    border-radius:15px;
+    background:rgba(255,255,255,.7);
+}
+
+.profile-label{
+    color:#777;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.profile-value{
+    color:#4a235a;
+    font-size:16px;
+    font-weight:700;
+    word-break:break-word;
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+    text-align:center;
+    background:linear-gradient(135deg,#f3e5f5,#fce4ec);
+}
+
+.robot{
+    font-size:55px;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:18px;
+}
+
+.dashboard-head p{
+    margin:5px 0;
+    color:#777;
+}
+
+.dashboard-badge{
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+    padding:8px 13px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.dash-card{
+    min-height:145px;
+    padding:20px;
+    border-radius:18px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 5px 16px rgba(100,50,130,.08);
+    transition:.25s;
+}
+
+.dash-card:hover{
+    transform:translateY(-4px);
+}
+
+.dash-wide{
+    grid-column:span 2;
+}
+
+.dash-icon{
+    font-size:31px;
+    margin-bottom:10px;
+}
+
+.dash-label{
+    font-size:13px;
+    font-weight:700;
+    color:#777;
+    margin-bottom:7px;
+}
+
+.dash-value{
+    font-size:17px;
+    font-weight:700;
+    line-height:1.35;
+    color:#4a235a;
+}
+
+.dash-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+}
+
+.dash-actions button{
+    background:rgba(255,255,255,.75);
+    color:#7b1fa2;
+    padding:9px 11px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.dashboard-notice{
+    border-left:5px solid #9c27b0;
+}
+
+.dashboard-transport{
+    border-left:5px solid #2196f3;
+}
+
+.dashboard-exam{
+    border-left:5px solid #ff9800;
+}
+
+/* =========================
+   CHATBOT
+========================= */
+
+.input-area{
+    display:flex;
+    gap:8px;
+}
+
+#question{
+    flex:1;
+    padding:15px;
+    border:2px solid #ba68c8;
+    border-radius:12px;
+    font-size:16px;
+    outline:0;
+    min-width:0;
+}
+
+#question:focus{
+    border-color:#8e24aa;
+}
+
+#askButton{
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+}
+
+#clearButton{
+    background:#555;
+    color:#fff;
+}
+
+.input-area button{
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+#chat{
+    max-height:350px;
+    overflow-y:auto;
+    margin-top:20px;
+    padding:5px;
+}
+
+.message{
+    padding:13px;
+    margin:10px 0;
+    border-radius:15px;
+    max-width:85%;
+    line-height:1.5;
+    white-space:pre-line;
+    word-wrap:break-word;
+}
+
+.user{
+    background:#f8bbd0;
+    margin-left:auto;
+    text-align:right;
+}
+
+.ai{
+    background:#ede7f6;
+}
+
+.typing{
+    color:#8e24aa;
+    font-style:italic;
+}
+
+/* =========================
+   QUICK QUESTIONS
+========================= */
+
+.quick{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+}
+
+.quick button{
+    background:#f3e5f5;
+    color:#7b1fa2;
+    padding:12px 15px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+/* =========================
+   COMMON GRID
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.box{
+    padding:20px;
+    border-radius:18px;
+}
+
+.green{background:#e8f5e9}
+.blue{background:#e3f2fd}
+.purple{background:#f3e5f5}
+.orange{background:#fff3e0}
+.pink{background:#fce4ec}
+.yellow{background:#fff8e1}
+
+/* =========================
+   SERVICES
+========================= */
+
+.service{
+    text-align:center;
+    font-size:17px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.service:hover{
+    transform:translateY(-4px);
+}
+
+/* =========================
+   FACULTY
+========================= */
+
+.faculty-card{
+    text-align:center;
+    transition:.25s;
+    border:1px solid rgba(142,36,170,.08);
+}
+
+.faculty-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(142,36,170,.16);
+}
+
+.faculty-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 12px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+    font-size:34px;
+}
+
+.faculty-card h3{
+    margin:8px 0;
+    color:#7b1fa2;
+}
+
+.faculty-role{
+    font-weight:700;
+    color:#9c27b0;
+    margin:5px 0;
+}
+
+.faculty-subject{
+    font-size:14px;
+    font-weight:700;
+    color:#5e2a68;
+    margin:8px 0;
+}
+
+.faculty-dept{
+    font-size:13px;
+    color:#666;
+    margin:5px 0;
+}
+
+.hod-card{
+    border:2px solid #9c27b0;
+}
+
+/* =========================
+   YEAR GUIDANCE
+========================= */
+
+.guidance-intro{
+    color:#777;
+    line-height:1.6;
+}
+
+.guidance-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-top:20px;
+}
+
+.guidance-card{
+    padding:25px;
+    border-radius:20px;
+    border:1px solid rgba(142,36,170,.1);
+    box-shadow:0 7px 20px rgba(100,50,130,.08);
+    transition:.25s;
+}
+
+.guidance-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 28px rgba(142,36,170,.16);
+}
+
+.guidance-icon{
+    width:58px;
+    height:58px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    background:linear-gradient(135deg,#8e24aa,#e91e63);
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.guidance-card h3{
+    margin:0 0 15px;
+    color:#7b1fa2;
+}
+
+.guidance-list{
+    margin:0;
+    padding-left:22px;
+    line-height:1.8;
+}
+
+.guidance-tip{
+    margin-top:18px;
+    padding:12px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,.65);
+    font-size:13px;
+    line-height:1.5;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact{
+    background:linear-gradient(135deg,#fff3e0,#ffe0b2);
+    padding:22px;
+    border-radius:18px;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark{
+    background:#17121f;
+    color:#fff;
+}
+
+body.dark #loginPage{
+    background:#17121f;
+}
+
+body.dark .login-card,
+body.dark .card{
+    background:#211b27;
+}
+
+body.dark .login-card h1,
+body.dark h2,
+body.dark .faculty-card h3,
+body.dark .guidance-card h3{
+    color:#ce93d8;
+}
+
+body.dark .login-subtitle,
+body.dark .login-note,
+body.dark .dashboard-head p,
+body.dark .dash-label,
+body.dark .profile-header p,
+body.dark footer{
+    color:#bbb;
+}
+
+body.dark .form-group label{
+    color:#e1bee7;
+}
+
+body.dark .form-group input,
+body.dark .form-group select,
+body.dark #question{
+    background:#29232f;
+    color:#fff;
+    border-color:#6a1b9a;
+}
+
+body.dark .login-tools button,
+body.dark .quick button,
+body.dark .dash-actions button{
+    background:#3a2945;
+    color:#fff;
+}
+
+body.dark .welcome,
+body.dark .profile-card{
+    background:#30223b;
+}
+
+body.dark .ai{
+    background:#352c40;
+}
+
+body.dark .contact{
+    background:#3b3020;
+}
+
+body.dark .profile-item,
+body.dark .guidance-tip{
+    background:#3a2945;
+}
+
+body.dark .profile-label{
+    color:#bbb;
+}
+
+body.dark .profile-value,
+body.dark .dash-value{
+    color:#f0d9f5;
+}
+
+body.dark .faculty-role{
+    color:#ba68c8;
+}
+
+body.dark .faculty-dept,
+body.dark .faculty-subject{
+    color:#ccc;
+}
+
+body.dark .faculty-card{
+    border-color:rgba(206,147,216,.2);
+}
+
+
+/* =========================
+   STUDENT OPPORTUNITIES + CAMPUS SOS
+========================= */
+.section-kicker{display:inline-block;padding:6px 10px;border-radius:999px;background:#f3e5f5;color:#7b1fa2;font-size:11px;font-weight:800;letter-spacing:.08em;margin-bottom:8px}
+.section-intro{color:#777;line-height:1.65;margin-top:0}
+.opportunities-section{border-top:4px solid #8e24aa}
+.recommendation-banner{padding:16px 18px;border-radius:16px;background:linear-gradient(135deg,#f3e5f5,#fce4ec);margin:18px 0}
+.recommendation-banner strong{color:#7b1fa2;font-size:16px}.recommendation-banner span{color:#555;line-height:1.5}
+.opportunity-search input{width:100%;padding:15px 16px;border:2px solid #d1a4dc;border-radius:14px;font-size:15px;outline:none}
+.opportunity-filters{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:12px 0 20px}
+.opportunity-filters select{padding:12px;border:1px solid #d8c0df;border-radius:12px;background:#fff;color:#444}
+.opportunity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.opportunity-card{padding:20px;border:1px solid rgba(142,36,170,.12);border-radius:18px;background:#fff;box-shadow:0 6px 18px rgba(100,50,130,.08);transition:.25s}
+.opportunity-card:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(100,50,130,.14)}
+.opportunity-top{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.demo-badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#f3e5f5;color:#7b1fa2;font-size:11px;font-weight:800}
+.year-badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#e3f2fd;color:#1565c0;font-size:11px;font-weight:800}
+.opportunity-card h3{margin:10px 0 8px;color:#6a1b9a}
+.op-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:12px 0;color:#555;font-size:13px}
+.op-desc{font-size:14px;line-height:1.55;color:#666}
+.op-btn{margin-top:10px;padding:10px 13px;border-radius:10px;background:linear-gradient(135deg,#8e24aa,#e91e63);color:#fff;font-weight:700}
+.op-btn.secondary{background:#f3e5f5;color:#7b1fa2;margin-left:7px}
+.op-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.opportunity-modal{position:fixed;inset:0;background:rgba(34,18,42,.58);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999}
+.opportunity-modal[hidden]{display:none}
+.opportunity-modal-box{width:100%;max-width:620px;max-height:88vh;overflow:auto;background:#fff;border-radius:22px;padding:25px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.opportunity-modal-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start}
+.opportunity-modal-head h3{margin:0;color:#6a1b9a;font-size:22px}
+.modal-close{width:38px;height:38px;border-radius:50%;background:#f3e5f5;color:#7b1fa2;font-size:20px;font-weight:700}
+.modal-note{margin:16px 0;padding:13px 15px;border-radius:13px;background:#fff8e1;color:#795548;font-size:13px;line-height:1.5}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+.modal-item{padding:12px;border-radius:12px;background:#f8f5fa}
+.modal-item strong{display:block;font-size:12px;color:#777;margin-bottom:4px}
+.modal-item span{font-size:14px;color:#4a235a;font-weight:700}
+.empty-state{padding:20px;text-align:center;color:#777;background:#f8f5fa;border-radius:14px}
+.sos-section{border-top:4px solid #e91e63}.sos-hero{display:flex;align-items:center;gap:15px;padding:18px;border-radius:18px;background:linear-gradient(135deg,#fce4ec,#f3e5f5);margin:18px 0}.sos-hero-icon{font-size:40px}.sos-hero h3{margin:0;color:#7b1fa2}.sos-hero p{margin:5px 0;color:#666}.sos-search{display:flex;gap:9px}.sos-search input{flex:1;padding:14px;border:2px solid #d1a4dc;border-radius:13px;outline:none}.sos-search button{padding:12px 18px;border-radius:13px;background:#e91e63;color:#fff;font-weight:800}.sos-result,.sos-details{margin-top:15px;padding:17px;border-radius:16px;background:#f8f2fa;border-left:5px solid #8e24aa}.sos-result h3,.sos-details h3{margin:0 0 8px;color:#7b1fa2}.sos-result p,.sos-details p{line-height:1.55;color:#555}.sos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}.sos-card{text-align:left;padding:16px;border-radius:16px;background:#fff;border:1px solid #ead9ee;box-shadow:0 5px 15px rgba(100,50,130,.07);transition:.2s}.sos-card:hover{transform:translateY(-3px);border-color:#ba68c8}.sos-card span{font-size:28px;display:block;margin-bottom:8px}.sos-card strong{display:block;color:#6a1b9a;margin-bottom:6px}.sos-card small{display:block;color:#777;line-height:1.4}.contact{background:linear-gradient(135deg,#fff3e0,#ffe0b2);padding:22px;border-radius:18px}
+body.dark .section-kicker{background:#3a2945;color:#e1bee7}body.dark .recommendation-banner{background:#30223b}body.dark .recommendation-banner span,body.dark .op-meta,body.dark .op-desc,body.dark .sos-hero p,body.dark .sos-result p,body.dark .sos-details p,body.dark .sos-card small{color:#ccc}body.dark .opportunity-card,body.dark .sos-card{background:#211b27;border-color:#493651}body.dark .opportunity-filters select,body.dark .opportunity-search input,body.dark .sos-search input{background:#29232f;color:#fff;border-color:#6a1b9a}body.dark .empty-state,body.dark .sos-result,body.dark .sos-details{background:#30263a}
+@media(max-width:1100px){.opportunity-filters{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.opportunity-grid{grid-template-columns:1fr}.opportunity-filters{grid-template-columns:repeat(2,1fr)}.sos-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.opportunity-filters,.sos-grid{grid-template-columns:1fr}.modal-grid{grid-template-columns:1fr}.sos-search{flex-direction:column}.sos-search input,.sos-search button{width:100%}}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .dashboard-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .dash-wide{
+        grid-column:span 2;
+    }
+}
+
+@media(max-width:700px){
+
+    header h1{
+        font-size:30px;
+    }
+
+    .input-area{
+        flex-direction:column;
+    }
+
+    #question,
+    .input-area button{
+        width:100%;
+    }
+
+    .grid,
+    .dashboard-grid,
+    .guidance-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dash-wide{
+        grid-column:span 1;
+    }
+
+    .message{
+        max-width:95%;
+    }
+
+    .container{
+        margin-top:18px;
+        padding:10px;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+    .profile-header{
+        align-items:flex-start;
+    }
+
+    .login-card{
+        padding:25px 20px;
+    }
+
+    .login-card h1{
+        font-size:27px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN PAGE
+========================= -->
+
+<section id="loginPage">
+
+<div class="login-container">
+
+<div class="login-card">
+
+<div class="login-logo">🔐</div>
+
+<h1 id="loginTitle">Student Login</h1>
+
+<p class="login-subtitle" id="loginSubtitle">
+Login to access your QuickCampus AI dashboard
+</p>
+
+<form class="login-form" id="loginForm">
+
+<div class="form-group">
+
+<label for="studentName" id="nameLabel">
+👤 Student Name
+</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="Enter your name"
+autocomplete="name"
+required
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="rollNumber" id="rollLabel">
+🎓 Roll Number
+</label>
+
+<input
+type="text"
+id="rollNumber"
+placeholder="Enter your roll number"
+autocomplete="off"
+required
+>
+
+</div>
+
+<div class="form-group">
+
+<label for="department" id="departmentLabel">
+💻 Department
+</label>
+
+<select id="department" required>
+
+<option value="AI&ML" selected>AI&ML</option>
+<option value="CSE">CSE</option>
+<option value="ECE">ECE</option>
+<option value="EEE">EEE</option>
+<option value="Mechanical">Mechanical</option>
+<option value="Civil">Civil</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label for="year" id="yearLabel">
+📚 Year
+</label>
+
+<select id="year" required>
+
+<option value="1st Year">1st Year</option>
+<option value="2nd Year" selected>2nd Year</option>
+<option value="3rd Year">3rd Year</option>
+<option value="4th Year">4th Year</option>
+
+</select>
+
+</div>
+
+<button
+type="submit"
+class="login-button"
+id="loginButton"
+>
+🔐 Login
+</button>
+
+</form>
+
+<p class="login-note" id="loginNote">
+Frontend demo login only. This is not a real secure authentication system and no password is stored.
+</p>
+
+<div class="login-tools">
+
+<button type="button" id="loginEnglish">
+🇬🇧 English
+</button>
+
+<button type="button" id="loginTelugu">
+🇮🇳 తెలుగు
+</button>
+
+<button type="button" id="loginTheme">
+🌙 Dark
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- =========================
+     MAIN APPLICATION
+========================= -->
+
+<div id="app">
+
+<header>
+
+<h1>
+🤖 QuickCampus AI
+</h1>
+
+<p id="subtitle">
+An Intelligent Student Query & Campus Information Assistant
+</p>
+
+<div class="top">
+
+<button type="button" id="englishBtn">
+🇬🇧 English
+</button>
+
+<button type="button" id="teluguBtn">
+🇮🇳 తెలుగు
+</button>
+
+<button type="button" id="theme">
+🌙 Dark Mode
+</button>
+
+<button type="button" id="logoutBtn">
+🚪 Logout
+</button>
+
+<button type="button" id="opportunitiesNavBtn">
+🚀 Opportunities
+</button>
+
+<button type="button" id="sosNavBtn">
+🆘 Campus SOS
+</button>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+
+<!-- =========================
+     STUDENT PROFILE
+========================= -->
+
+<div class="card profile-card">
+
+<div class="profile-header">
+
+<div class="profile-avatar">
+👤
+</div>
+
+<div>
+
+<h2 id="profileTitle">
+👤 Student Profile
+</h2>
+
+<p id="profileSubtitle">
+Your QuickCampus AI student information
+</p>
+
+</div>
+
+</div>
+
+<div class="profile-grid">
+
+<div class="profile-item">
+
+<div class="profile-label" id="profileNameLabel">
+👤 Student Name
+</div>
+
+<div class="profile-value" id="profileName">
+Student Name
+</div>
+
+</div>
+
+
+<div class="profile-item">
+
+<div class="profile-label" id="profileRollLabel">
+🎓 Roll Number
+</div>
+
+<div class="profile-value" id="profileRoll">
+Roll Number
+</div>
+
+</div>
+
+
+<div class="profile-item">
+
+<div class="profile-label" id="profileDepartmentLabel">
+💻 Department
+</div>
+
+<div class="profile-value" id="profileDepartment">
+AI&ML
+</div>
+
+</div>
+
+
+<div class="profile-item">
+
+<div class="profile-label" id="profileYearLabel">
+📚 Year
+</div>
+
+<div class="profile-value" id="profileYear">
+2nd Year
+</div>
+
+</div>
+
+
+<div
+class="profile-item"
+style="grid-column:1/-1"
+>
+
+<div class="profile-label" id="profileCollegeLabel">
+🏫 College
+</div>
+
+<div class="profile-value" id="profileCollege">
+Sri Sivani College of Engineering
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     WELCOME
+========================= -->
+
+<div class="card welcome">
+
+<div class="robot">
+🤖
+</div>
+
+<h2 id="welcome">
+Welcome Student! 👋
+</h2>
+
+<p id="welcomeSub">
+Ask me anything about your campus.
+</p>
+
+</div>
+
+
+<!-- =========================
+     STUDENT DASHBOARD
+========================= -->
+
+<div class="card dashboard" id="studentDashboard">
+
+<div class="dashboard-head">
+
+<div>
+
+<h2 id="dashboardTitle">
+📊 Student Dashboard
+</h2>
+
+<p id="dashboardSubtitle">
+Your campus information at a glance
+</p>
+
+</div>
+
+<div
+class="dashboard-badge"
+id="dashboardBadge"
+>
+AI&ML Student
+</div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<div class="dash-card purple">
+
+<div class="dash-icon">
+🎓
+</div>
+
+<div
+class="dash-label"
+id="dashDeptLabel"
+>
+My Department
+</div>
+
+<div
+class="dash-value"
+id="dashboardDepartment"
+>
+AI&ML
+</div>
+
+</div>
+
+
+<div class="dash-card blue">
+
+<div class="dash-icon">
+📅
+</div>
+
+<div
+class="dash-label"
+id="dashTimeLabel"
+>
+College Timing
+</div>
+
+<div class="dash-value">
+8:50 AM – 4:10 PM
+</div>
+
+</div>
+
+
+<div class="dash-card pink">
+
+<div class="dash-icon">
+👨‍🏫
+</div>
+
+<div
+class="dash-label"
+id="dashHodLabel"
+>
+HOD
+</div>
+
+<div class="dash-value">
+P. Pradeep Kumar
+</div>
+
+</div>
+
+
+<div class="dash-card green">
+
+<div class="dash-icon">
+👩‍🏫
+</div>
+
+<div
+class="dash-label"
+id="dashFacultyLabel"
+>
+Faculty
+</div>
+
+<div class="dash-value">
+P. Pradeep Kumar<br>
+Y. Jagadeesh Kumar<br>
+K. Venu Gopal
+</div>
+
+</div>
+
+
+<div class="dash-card dash-wide dashboard-notice orange">
+
+<div class="dash-icon">
+📢
+</div>
+
+<div
+class="dash-label"
+id="dashNoticeLabel"
+>
+Latest Notices
+</div>
+
+<div
+class="dash-value"
+id="dashNoticeValue"
+>
+Check the college notice board for the latest announcements.
+</div>
+
+<div class="dash-actions">
+
+<button
+type="button"
+data-action="notice"
+id="dashNoticeBtn"
+>
+View Notices
+</button>
+
+</div>
+
+</div>
+
+
+<div class="dash-card dash-wide dashboard-transport blue">
+
+<div class="dash-icon">
+🚌
+</div>
+
+<div
+class="dash-label"
+id="dashTransportLabel"
+>
+Transport Information
+</div>
+
+<div
+class="dash-value"
+id="dashTransportValue"
+>
+For bus routes and timings, contact the college transport department.
+</div>
+
+<div class="dash-actions">
+
+<button
+type="button"
+data-action="transport"
+id="dashTransportBtn"
+>
+Ask Transport
+</button>
+
+</div>
+
+</div>
+
+
+<div class="dash-card dash-wide dashboard-exam yellow">
+
+<div class="dash-icon">
+📝
+</div>
+
+<div
+class="dash-label"
+id="dashExamLabel"
+>
+Exam Information
+</div>
+
+<div
+class="dash-value"
+id="dashExamValue"
+>
+Check the official college notice board for examination schedules.
+</div>
+
+<div class="dash-actions">
+
+<button
+type="button"
+data-action="exam"
+id="dashExamBtn"
+>
+Ask Exam Info
+</button>
+
+</div>
+
+</div>
+
+
+<div class="dash-card dash-wide purple">
+
+<div class="dash-icon">
+💡
+</div>
+
+<div
+class="dash-label"
+id="dashActionsLabel"
+>
+Quick Actions
+</div>
+
+<div class="dash-actions">
+
+<button type="button" data-action="faculty">
+👨‍🏫 Faculty
+</button>
+
+<button type="button" data-action="hod">
+🎓 HOD
+</button>
+
+<button type="button" data-action="timing">
+🕘 Timing
+</button>
+
+<button type="button" data-action="department">
+📚 Department
+</button>
+
+<button type="button" data-action="year1">
+🌱 1st Year
+</button>
+
+<button type="button" data-action="year2">
+🛠️ 2nd Year
+</button>
+
+<button type="button" data-action="year3">
+💻 3rd Year
+</button>
+
+<button type="button" data-action="year4">
+🚀 4th Year
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- =========================
+     AI ASSISTANT
+========================= -->
+
+<div class="card">
+
+<h2 id="assistantTitle">
+🤖 AI Assistant
+</h2>
+
+<p id="help">
+Ask your campus question below.
+</p>
+
+<div class="input-area">
+
+<input
+id="question"
+type="text"
+placeholder="Ask your campus question..."
+autocomplete="off"
+>
+
+<button
+type="button"
+id="askButton"
+>
+Ask
+</button>
+
+<button
+type="button"
+id="clearButton"
+>
+🗑️ Clear
+</button>
+
+</div>
+
+<div id="chat">
+
+<div class="message ai">
+🤖 Hello! I am QuickCampus AI. How can I help you?
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     QUICK QUESTIONS
+========================= -->
+
+<div class="card">
+
+<h2 id="quickTitle">
+💡 Quick Questions
+</h2>
+
+<div class="quick">
+
+<button type="button" data-quick="timing">
+🕘 College Timing
+</button>
+
+<button type="button" data-quick="department">
+🎓 Departments
+</button>
+
+<button type="button" data-quick="hod">
+👨‍🏫 AI&ML HOD
+</button>
+
+<button type="button" data-quick="faculty">
+👨‍🏫 Faculty
+</button>
+<button type="button" data-quick="year1">
+🌱 1st Year
+</button>
+
+<button type="button" data-quick="year2">
+🛠️ 2nd Year
+</button>
+
+<button type="button" data-quick="year3">
+💻 3rd Year
+</button>
+
+<button type="button" data-quick="year4">
+🚀 4th Year
+</button>
+
+<button type="button" data-quick="exam">
+📝 Exam Info
+</button>
+
+<button type="button" data-quick="notice">
+📢 Notices
+</button>
+
+<button type="button" data-quick="transport">
+🚌 Transport
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     STUDENT SERVICES
+========================= -->
+
+<div class="card">
+
+<h2 id="serviceTitle">
+🎓 Student Services
+</h2>
+
+<div class="grid">
+
+<div
+class="box green service"
+data-service="academic"
+>
+📚<br>
+<span id="academicService">
+Academic Help
+</span>
+</div>
+
+<div
+class="box orange service"
+data-service="exam"
+>
+📝<br>
+<span id="examService">
+Exam Information
+</span>
+</div>
+
+<div
+class="box pink service"
+data-service="notice"
+>
+📢<br>
+<span id="noticeService">
+Notices
+</span>
+</div>
+
+<div
+class="box blue service"
+data-service="transport"
+>
+🚌<br>
+<span id="transportService">
+Transport
+</span>
+</div>
+
+<div
+class="box purple service"
+data-service="faculty"
+>
+👨‍🏫<br>
+<span id="facultyService">
+Faculty Support
+</span>
+</div>
+
+<div
+class="box yellow service"
+data-service="contact"
+>
+📞<br>
+<span id="contactService">
+Contact Help
+</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CAMPUS INFORMATION
+========================= -->
+
+<div class="card">
+
+<h2 id="campusTitle">
+🏫 Campus Information
+</h2>
+
+<div class="grid">
+
+<div class="box green">
+
+<h3>🕘</h3>
+
+<p id="timingInfo">
+College Timing: 8:50 AM - 4:10 PM
+</p>
+
+</div>
+
+<div class="box blue">
+
+<h3>🎓</h3>
+
+<p id="departmentInfo">
+Departments: CSE, AI&ML, ECE, EEE, Mechanical, Civil
+</p>
+
+</div>
+
+<div class="box purple">
+
+<h3>👨‍🏫</h3>
+
+<p id="hodInfo">
+AI&ML HOD: P. Pradeep Kumar
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     FACULTY INFORMATION
+========================= -->
+
+<div class="card">
+
+<h2 id="facultyTitle">
+👨‍🏫 Faculty Information
+</h2>
+
+<p id="facultySubtitle">
+Faculty Members
+</p>
+
+<div class="grid">
+
+
+<!-- FACULTY MEMBERS -->
+
+<div class="box orange faculty-card hod-card"><div class="faculty-icon">👨‍🏫</div><h3>P. Pradeep Kumar</h3></div>
+<div class="box pink faculty-card"><div class="faculty-icon">👨‍🏫</div><h3>Y. Jagadeesh Kumar</h3></div>
+<div class="box blue faculty-card"><div class="faculty-icon">👨‍🏫</div><h3>K. Venu Gopal</h3></div>
+<div class="box purple faculty-card"><div class="faculty-icon">👨‍🏫</div><h3>M. Srinivas Naidu</h3></div>
+<div class="box green faculty-card"><div class="faculty-icon">👨‍🏫</div><h3>S. Sudeer Kumar</h3></div>
+<div class="box orange faculty-card"><div class="faculty-icon">👨‍🏫</div><h3>M. Hima Bindhu</h3></div>
+<div class="box pink faculty-card"><div class="faculty-icon">👩‍🏫</div><h3>K. Suma</h3></div>
+<div class="box blue faculty-card"><div class="faculty-icon">👩‍🏫</div><h3>D. Shilpa</h3></div>
+<div class="box purple faculty-card"><div class="faculty-icon">👩‍🏫</div><h3>B. Jhansi</h3></div>
+
+</div>
+</div>
+
+
+<!-- =========================
+     YEAR-WISE GUIDANCE
+========================= -->
+
+<div class="card" id="yearGuidance">
+
+<h2 id="guidanceTitle">
+🎓 B.Tech Year-Wise Student Guidance
+</h2>
+
+<p
+class="guidance-intro"
+id="guidanceIntro"
+>
+General guidance for building a strong foundation, technical skills, projects, internships, placements and career readiness.
+</p>
+
+<div class="guidance-grid">
+
+
+<!-- 1ST YEAR -->
+
+<div class="guidance-card green">
+
+<div class="guidance-icon">
+🌱
+</div>
+
+<h3 id="year1Title">
+1st Year – Foundation
+</h3>
+
+<ul
+class="guidance-list"
+id="year1List"
+>
+<li>💻 Programming fundamentals</li>
+<li>🐍 C/Python/Java basics</li>
+<li>🧩 Basic Data Structures concepts</li>
+<li>🗣️ Communication skills</li>
+<li>📚 Core engineering subjects</li>
+<li>🖥️ Basic computer skills</li>
+<li>🎯 Building a strong academic foundation</li>
+</ul>
+
+<div
+class="guidance-tip"
+id="year1Tip"
+>
+Tip: Build fundamentals first and develop consistent study and coding habits.
+</div>
+
+</div>
+
+
+<!-- 2ND YEAR -->
+
+<div class="guidance-card blue">
+
+<div class="guidance-icon">
+🛠️
+</div>
+
+<h3 id="year2Title">
+2nd Year – Skills Development
+</h3>
+
+<ul
+class="guidance-list"
+id="year2List"
+>
+<li>🐍 Java/Python development</li>
+<li>🧩 Data Structures</li>
+<li>🗄️ Database concepts</li>
+<li>🌐 Web development basics</li>
+<li>🧑‍💻 Git and GitHub</li>
+<li>🛠️ Mini projects</li>
+<li>🧠 Problem solving</li>
+<li>💻 Technical skill development</li>
+</ul>
+
+<div
+class="guidance-tip"
+id="year2Tip"
+>
+Tip: Combine DSA practice with small projects and version-control habits.
+</div>
+
+</div>
+
+
+<!-- 3RD YEAR -->
+
+<div class="guidance-card purple">
+
+<div class="guidance-icon">
+💻
+</div>
+
+<h3 id="year3Title">
+3rd Year – Projects & Internships
+</h3>
+
+<ul
+class="guidance-list"
+id="year3List"
+>
+<li>💻 Advanced technical skills</li>
+<li>📚 Advanced Data Structures</li>
+<li>🛠️ Project development</li>
+<li>🏢 Internship preparation</li>
+<li>🌐 Industry-oriented skills</li>
+<li>🧠 Coding practice</li>
+<li>🧑‍💻 GitHub projects</li>
+<li>📝 Resume preparation</li>
+<li>🎯 Placement preparation</li>
+</ul>
+
+<div
+class="guidance-tip"
+id="year3Tip"
+>
+Tip: Build meaningful projects, practice coding regularly, strengthen GitHub and prepare early for internships.
+</div>
+
+</div>
+
+
+<!-- 4TH YEAR -->
+
+<div class="guidance-card pink">
+
+<div class="guidance-icon">
+🚀
+</div>
+
+<h3 id="year4Title">
+4th Year – Career & Placements
+</h3>
+
+<ul
+class="guidance-list"
+id="year4List"
+>
+<li>💼 Placement preparation</li>
+<li>🧠 Aptitude</li>
+<li>💻 Coding preparation</li>
+<li>🎯 Technical interviews</li>
+<li>🎤 HR interviews</li>
+<li>📄 Resume improvement</li>
+<li>🗣️ Mock interviews</li>
+<li>🏢 Job preparation</li>
+<li>💼 Internship opportunities</li>
+<li>🎓 Higher studies guidance</li>
+<li>🚀 Career planning</li>
+</ul>
+
+<div
+class="guidance-tip"
+id="year4Tip"
+>
+Tip: Balance aptitude, coding, interviews, resume improvement and your chosen career path.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     NOTICES
+========================= -->
+
+<div class="card">
+
+<h2 id="noticeTitle">
+📢 Notices & Events
+</h2>
+
+<div class="grid">
+
+<div class="box orange">
+
+<h3 id="examHeading">
+📝 Internal Exams
+</h3>
+
+<p id="examNotice">
+Check the college notice board for examination schedules.
+</p>
+
+</div>
+
+<div class="box pink">
+
+<h3 id="eventHeading">
+🎉 College Events
+</h3>
+
+<p id="eventNotice">
+Check campus announcements for upcoming events.
+</p>
+
+</div>
+
+<div class="box yellow">
+
+<h3 id="dateHeading">
+📅 Important Dates
+</h3>
+
+<p id="dateNotice">
+Important dates will be announced through official notices.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     STUDENT OPPORTUNITIES
+========================= -->
+
+<section class="card opportunities-section" id="studentOpportunities">
+  <div class="section-kicker">CAREER & LEARNING</div>
+  <h2>🚀 Student Opportunities</h2>
+  <p class="section-intro">Explore external learning, coding, hackathon, internship, project, paper-presentation and career opportunities selected by year. Sample records are clearly marked and contain no real event claims or registration links.</p>
+
+  <div class="recommendation-banner">
+    <div><strong>⭐ Recommended for You</strong><br><span id="opportunityRecommendation">Choose your year at login to see year-wise recommendations.</span></div>
+  </div>
+
+  <div class="opportunity-search">
+    <input id="opportunitySearch" type="search" placeholder="🔍 Search opportunities..." autocomplete="off">
+  </div>
+  <div class="opportunity-filters">
+    <select id="opYearFilter"><option value="">All Years</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select>
+    <select id="opTypeFilter"><option value="">Event Type</option><option>Workshop</option><option>Coding Competition</option><option>Hackathon</option><option>Internship</option><option>Project Competition</option><option>Paper Presentation</option><option>Technical Event</option><option>Career Event</option></select>
+    <select id="opModeFilter"><option value="">Online / Offline</option><option>Online</option><option>Offline</option></select>
+    <select id="opLocationFilter"><option value="">Location</option><option>Online</option><option>External Venue</option><option>Not specified</option></select>
+    <select id="opEligibilityFilter"><option value="">Eligibility</option><option>Students</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option><option>All Branches</option></select>
+  </div>
+
+  <div id="opportunityGrid" class="opportunity-grid"></div>
+  <p id="opportunityEmpty" class="empty-state" hidden>No opportunities match your filters. Try another year, event type or search term.</p>
+</section>
+
+<div class="opportunity-modal" id="opportunityModal" hidden>
+  <div class="opportunity-modal-box" role="dialog" aria-modal="true" aria-labelledby="opportunityModalTitle">
+    <div class="opportunity-modal-head">
+      <div>
+        <div class="section-kicker">OPPORTUNITY DETAILS</div>
+        <h3 id="opportunityModalTitle">Opportunity</h3>
+      </div>
+      <button type="button" class="modal-close" id="opportunityModalClose" aria-label="Close">×</button>
+    </div>
+    <div id="opportunityModalContent"></div>
+  </div>
+</div>
+
+
+<!-- =========================
+     CAMPUS SOS
+========================= -->
+
+<section class="card sos-section" id="campusSOS">
+  <div class="section-kicker">SMART STUDENT HELP</div>
+  <h2>🆘 Campus SOS</h2>
+  <p class="section-intro">Student has a problem → select the problem type → QuickCampus AI guides you to the appropriate person, department, office or campus area.</p>
+
+  <div class="sos-hero">
+    <div class="sos-hero-icon">🆘</div>
+    <div><h3>I Need Help</h3><p>Tell us what you need. We'll guide you.</p></div>
+  </div>
+
+  <div class="sos-search">
+    <input id="sosSearch" type="text" placeholder='Try: “My ID card is lost” or “Where is the library?”' autocomplete="off">
+    <button type="button" id="sosSearchBtn">🔎 Find Help</button>
+  </div>
+  <div id="sosResult" class="sos-result" hidden></div>
+
+  <div class="sos-grid">
+    <button class="sos-card" type="button" data-sos="academic"><span>📚</span><strong>Academic Problem</strong><small>Faculty queries, mentor guidance and academic issues</small></button>
+    <button class="sos-card" type="button" data-sos="lost"><span>🔎</span><strong>Lost Something</strong><small>Lost & Found guidance and reporting help</small></button>
+    <button class="sos-card" type="button" data-sos="technical"><span>💻</span><strong>Technical Problem</strong><small>Lab computers, Wi-Fi, software and equipment</small></button>
+    <button class="sos-card" type="button" data-sos="navigation"><span>🗺️</span><strong>Campus Navigation</strong><small>Find campus departments and important locations</small></button>
+    <button class="sos-card" type="button" data-sos="document"><span>📄</span><strong>Need a Document</strong><small>Bonafide, ID card, certificates and academic documents</small></button>
+  </div>
+
+  <div id="sosDetails" class="sos-details">
+    <h3>🧭 Choose a help category</h3>
+    <p>Select an option above or describe your problem in the search box. Guidance will use only information available in this project.</p>
+  </div>
+</section>
+
+
+<!-- =========================
+     CAMPUS SMART HELP
+========================= -->
+
+<div class="card contact">
+  <h2 id="contactTitle">🆘 Campus Smart Help</h2>
+  <p id="studentHelp">Student support is now centralized in Campus SOS. Select a problem category or search your issue to get guidance.</p>
+  <p id="facultyHelp">👨‍🏫 Academic issues → concerned faculty/department information already available above.</p>
+  <p id="transportHelp">🚌 Transport → contact the college transport department for bus information.</p>
+  <p id="noticeHelp">📢 Notices → check the existing college notices section for official announcements.</p>
+</div>
+
+</div>
+
+<footer>
+🤖 QuickCampus AI | Student Campus Assistant
+</footer>
+
+</div>
+
+
+<script>
+
+"use strict";
+
+let language="english";
+let currentStudent=null;
+let typingTimer=null;
+
+
+/* =========================
+   SHORTCUT
+========================= */
+
+function $(id){
+    return document.getElementById(id);
+}
+
+
+/* =========================
+   YEAR ANSWERS
+========================= */
+
+const yearAnswers={
+
+y1:{
+en:"1st year focus: programming fundamentals, C/Python/Java basics, basic Data Structures, communication skills, core engineering subjects, basic computer skills, and building a strong academic foundation.",
+te:"1వ సంవత్సరం: Programming fundamentals, C/Python/Java basics, Basic Data Structures, Communication skills, Core engineering subjects, Basic computer skills మరియు strong academic foundationపై దృష్టి పెట్టండి."
+},
+
+y2:{
+en:"2nd year focus: Java/Python development, Data Structures, database concepts, web development basics, Git and GitHub, mini projects, problem solving, and technical skill development.",
+te:"2వ సంవత్సరం: Java/Python development, Data Structures, Database concepts, Web development basics, Git మరియు GitHub, Mini projects, Problem solving మరియు Technical skill developmentపై దృష్టి పెట్టండి."
+},
+
+y3:{
+en:"3rd year focus: advanced technical skills, Advanced Data Structures, project development, internship preparation, industry-oriented skills, coding practice, GitHub projects, resume preparation, and placement preparation.",
+te:"3వ సంవత్సరం: Advanced technical skills, Advanced Data Structures, Projects, Internship preparation, Industry-oriented skills, Coding practice, GitHub projects, Resume preparation మరియు Placement preparationపై దృష్టి పెట్టండి."
+},
+
+y4:{
+en:"4th year focus: placement preparation, aptitude, coding preparation, technical interviews, HR interviews, mock interviews, resume improvement, job preparation, internship opportunities, higher studies guidance, and career planning.",
+te:"4వ సంవత్సరం: Placements, Aptitude, Coding, Technical interviews, HR interviews, Mock interviews, Resume improvement, Job preparation, Internship opportunities, Higher studies guidance మరియు Career planningపై దృష్టి పెట్టండి."
+}
+
+};
+
+
+/* =========================
+   TRANSLATIONS
+========================= */
+
+const T={
+
+english:{
+
+loginTitle:"Student Login",
+
+loginSubtitle:
+"Login to access your QuickCampus AI dashboard",
+
+nameLabel:"👤 Student Name",
+
+rollLabel:"🎓 Roll Number",
+
+departmentLabel:"💻 Department",
+
+yearLabel:"📚 Year",
+
+loginButton:"🔐 Login",
+
+loginNote:
+"Frontend demo login only. This is not a real secure authentication system and no password is stored.",
+
+profileTitle:"👤 Student Profile",
+
+profileSubtitle:
+"Your QuickCampus AI student information",
+
+profileNameLabel:"👤 Student Name",
+
+profileRollLabel:"🎓 Roll Number",
+
+profileDepartmentLabel:"💻 Department",
+
+profileYearLabel:"📚 Year",
+
+profileCollegeLabel:"🏫 College",
+
+subtitle:
+"An Intelligent Student Query & Campus Information Assistant",
+
+welcome:"Welcome Student! 👋",
+
+welcomeSub:
+"Ask me anything about your campus.",
+
+assistantTitle:"🤖 AI Assistant",
+
+help:"Ask your campus question below.",
+
+placeholder:"Ask your campus question...",
+
+ask:"Ask",
+
+clear:"🗑️ Clear",
+
+quickTitle:"💡 Quick Questions",
+
+serviceTitle:"🎓 Student Services",
+
+campusTitle:"🏫 Campus Information",
+
+timingInfo:
+"College Timing: 8:50 AM - 4:10 PM",
+
+departmentInfo:
+"Departments: CSE, AI&ML, ECE, EEE, Mechanical, Civil",
+
+hodInfo:
+"AI&ML HOD: P. Pradeep Kumar",
+
+facultyTitle:"👨‍🏫 Faculty Information",
+
+facultySubtitle:
+"Faculty Members",
+
+pradeepRole:"AI&ML HOD",
+
+pradeepDept:
+"Head of Department - Artificial Intelligence & Machine Learning",
+
+himaRole:"Faculty",
+
+himaSubjects:
+"Teaches PAI • Programming Languages",
+
+himaDept:
+"Department of Artificial Intelligence & Machine Learning",
+
+
+rajeshRole:"Faculty",
+
+rajeshSubjects:
+"Teaches Advanced Data Structures",
+
+rajeshDept:
+"Department of Artificial Intelligence & Machine Learning",
+
+guidanceTitle:
+"🎓 B.Tech Year-Wise Student Guidance",
+
+guidanceIntro:
+"General guidance for building a strong foundation, technical skills, projects, internships, placements and career readiness.",
+
+year1Title:"1st Year – Foundation",
+
+year2Title:"2nd Year – Skills Development",
+
+year3Title:"3rd Year – Projects & Internships",
+
+year4Title:"4th Year – Career & Placements",
+
+year1Tip:
+"Tip: Build fundamentals first and develop consistent study and coding habits.",
+
+year2Tip:
+"Tip: Combine DSA practice with small projects and version-control habits.",
+
+year3Tip:
+"Tip: Build meaningful projects, practice coding regularly, strengthen GitHub and prepare early for internships.",
+
+year4Tip:
+"Tip: Balance aptitude, coding, interviews, resume improvement and your chosen career path.",
+
+noticeTitle:"📢 Notices & Events",
+
+examHeading:"📝 Internal Exams",
+
+eventHeading:"🎉 College Events",
+
+dateHeading:"📅 Important Dates",
+
+examNotice:
+"Check the college notice board for examination schedules.",
+
+eventNotice:
+"Check campus announcements for upcoming events.",
+
+dateNotice:
+"Important dates will be announced through official notices.",
+
+contactTitle:"🆘 Campus Smart Help",
+
+studentHelp:
+"👨‍🎓 Student Help: Contact the concerned department for academic or campus-related queries.",
+
+facultyHelp:
+"👨‍🏫 Faculty Help: Contact your faculty member for subject-related assistance.",
+
+transportHelp:
+"🚌 Transport Help: Contact the college transport department for bus information.",
+
+noticeHelp:
+"📢 Notice Help: Check the official college notice board for latest announcements.",
+
+dashboardTitle:"📊 Student Dashboard",
+
+dashboardSubtitle:
+"Your campus information at a glance",
+
+dashDeptLabel:"My Department",
+
+dashTimeLabel:"College Timing",
+
+dashHodLabel:"HOD",
+
+dashFacultyLabel:"Faculty",
+
+dashNoticeLabel:"Latest Notices",
+
+dashNoticeValue:
+"Check the college notice board for the latest announcements.",
+
+dashNoticeBtn:"View Notices",
+
+dashTransportLabel:"Transport Information",
+
+dashTransportValue:
+"For bus routes and timings, contact the college transport department.",
+
+dashTransportBtn:"Ask Transport",
+
+dashExamLabel:"Exam Information",
+
+dashExamValue:
+"Check the official college notice board for examination schedules.",
+
+dashExamBtn:"Ask Exam Info",
+
+dashActionsLabel:"Quick Actions",
+
+academicService:"Academic Help",
+
+examService:"Exam Information",
+
+noticeService:"Notices",
+
+transportService:"Transport",
+
+facultyService:"Faculty Support",
+
+contactService:"Contact Help"
+
+},
+
+telugu:{
+
+loginTitle:"విద్యార్థి లాగిన్",
+
+loginSubtitle:
+"మీ QuickCampus AI డ్యాష్‌బోర్డ్‌ను యాక్సెస్ చేయడానికి లాగిన్ చేయండి",
+
+nameLabel:"👤 విద్యార్థి పేరు",
+
+rollLabel:"🎓 రోల్ నంబర్",
+
+departmentLabel:"💻 విభాగం",
+
+yearLabel:"📚 సంవత్సరం",
+
+loginButton:"🔐 లాగిన్",
+
+loginNote:
+"ఇది Frontend Demo Login మాత్రమే. ఇది నిజమైన Secure Authentication System కాదు మరియు ఎలాంటి Password నిల్వ చేయబడదు.",
+
+profileTitle:"👤 విద్యార్థి ప్రొఫైల్",
+
+profileSubtitle:
+"మీ QuickCampus AI విద్యార్థి సమాచారం",
+
+profileNameLabel:"👤 విద్యార్థి పేరు",
+
+profileRollLabel:"🎓 రోల్ నంబర్",
+
+profileDepartmentLabel:"💻 విభాగం",
+
+profileYearLabel:"📚 సంవత్సరం",
+
+profileCollegeLabel:"🏫 కాలేజీ",
+
+subtitle:
+"తెలివైన విద్యార్థి ప్రశ్నలు & క్యాంపస్ సమాచార సహాయకుడు",
+
+welcome:"విద్యార్థికి స్వాగతం! 👋",
+
+welcomeSub:
+"మీ క్యాంపస్ గురించి ఏ ప్రశ్న అయినా అడగండి.",
+
+assistantTitle:"🤖 AI అసిస్టెంట్",
+
+help:"మీ క్యాంపస్ ప్రశ్నను క్రింద అడగండి.",
+
+placeholder:"మీ క్యాంపస్ ప్రశ్నను అడగండి...",
+
+ask:"అడగండి",
+
+clear:"🗑️ క్లియర్",
+
+quickTitle:"💡 త్వరిత ప్రశ్నలు",
+
+serviceTitle:"🎓 విద్యార్థి సేవలు",
+
+campusTitle:"🏫 క్యాంపస్ సమాచారం",
+
+timingInfo:
+"కాలేజీ సమయం: ఉదయం 8:50 AM - సాయంత్రం 4:10 PM",
+
+departmentInfo:
+"విభాగాలు: CSE, AI&ML, ECE, EEE, Mechanical, Civil",
+
+hodInfo:
+"AI&ML HOD: ప్రదీప్ సర్",
+
+facultyTitle:"👨‍🏫 ఫ్యాకల్టీ సమాచారం",
+
+facultySubtitle:
+"ఫ్యాకల్టీ సభ్యులు",
+
+pradeepRole:"AI&ML HOD",
+
+pradeepDept:
+"ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ & మెషిన్ లెర్నింగ్ విభాగాధిపతి",
+
+himaRole:"ఫ్యాకల్టీ",
+
+himaSubjects:
+"PAI • Programming Languages బోధిస్తారు",
+
+himaDept:
+"ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ & మెషిన్ లెర్నింగ్ విభాగం",
+
+
+rajeshRole:"ఫ్యాకల్టీ",
+
+rajeshSubjects:
+"Advanced Data Structures బోధిస్తారు",
+
+rajeshDept:
+"ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ & మెషిన్ లెర్నింగ్ విభాగం",
+
+guidanceTitle:
+"🎓 B.Tech సంవత్సరం వారీ విద్యార్థి మార్గదర్శకం",
+
+guidanceIntro:
+"Strong foundation, technical skills, projects, internships, placements మరియు career readiness కోసం సాధారణ మార్గదర్శకం.",
+
+year1Title:"1వ సంవత్సరం – Foundation",
+
+year2Title:"2వ సంవత్సరం – Skills Development",
+
+year3Title:"3వ సంవత్సరం – Projects & Internships",
+
+year4Title:"4వ సంవత్సరం – Career & Placements",
+
+year1Tip:
+"సూచన: ముందుగా fundamentals బలపరచుకుని regular study మరియు coding habits పెంచుకోండి.",
+
+year2Tip:
+"సూచన: DSA practiceను చిన్న projects మరియు Git/GitHub habitsతో కలపండి.",
+
+year3Tip:
+"సూచన: మంచి projects build చేసి, coding regularగా practice చేసి, GitHubను బలపరచి internships కోసం ముందుగానే సిద్ధం అవ్వండి.",
+
+year4Tip:
+"సూచన: Aptitude, coding, interviews, resume improvement మరియు మీ career pathపై సమతుల్యంగా దృష్టి పెట్టండి.",
+
+noticeTitle:"📢 నోటీసులు & ఈవెంట్స్",
+
+examHeading:"📝 అంతర్గత పరీక్షలు",
+
+eventHeading:"🎉 కాలేజీ ఈవెంట్స్",
+
+dateHeading:"📅 ముఖ్యమైన తేదీలు",
+
+examNotice:
+"పరీక్షల షెడ్యూల్ కోసం కాలేజీ నోటీస్ బోర్డును చెక్ చేయండి.",
+
+eventNotice:
+"రాబోయే ఈవెంట్స్ కోసం క్యాంపస్ ప్రకటనలను చెక్ చేయండి.",
+
+dateNotice:
+"ముఖ్యమైన తేదీలు అధికారిక నోటీసుల ద్వారా ప్రకటించబడతాయి.",
+
+contactTitle:"📞 సంప్రదింపు & సహాయ కేంద్రం",
+
+studentHelp:
+"👨‍🎓 విద్యార్థి సహాయం: అకాడమిక్ లేదా క్యాంపస్ సంబంధిత ప్రశ్నల కోసం సంబంధిత విభాగాన్ని సంప్రదించండి.",
+
+facultyHelp:
+"👨‍🏫 ఫ్యాకల్టీ సహాయం: సబ్జెక్ట్ సహాయం కోసం సంబంధిత ఫ్యాకల్టీని సంప్రదించండి.",
+
+transportHelp:
+"🚌 ట్రాన్స్‌పోర్ట్ సహాయం: బస్ సమాచారం కోసం కాలేజీ ట్రాన్స్‌పోర్ట్ డిపార్ట్‌మెంట్‌ను సంప్రదించండి.",
+
+noticeHelp:
+"📢 నోటీస్ సహాయం: తాజా ప్రకటనల కోసం అధికారిక కాలేజీ నోటీస్ బోర్డును చెక్ చేయండి.",
+
+dashboardTitle:"📊 విద్యార్థి డ్యాష్‌బోర్డ్",
+
+dashboardSubtitle:
+"మీ క్యాంపస్ సమాచారాన్ని ఒకే చోట చూడండి",
+
+dashDeptLabel:"నా విభాగం",
+
+dashTimeLabel:"కాలేజీ సమయం",
+
+dashHodLabel:"HOD",
+
+dashFacultyLabel:"ఫ్యాకల్టీ",
+
+dashNoticeLabel:"తాజా నోటీసులు",
+
+dashNoticeValue:
+"తాజా ప్రకటనల కోసం కాలేజీ నోటీస్ బోర్డును చెక్ చేయండి.",
+
+dashNoticeBtn:"నోటీసులు చూడండి",
+
+dashTransportLabel:"ట్రాన్స్‌పోర్ట్ సమాచారం",
+
+dashTransportValue:
+"బస్ రూట్లు మరియు సమయాల కోసం కాలేజీ ట్రాన్స్‌పోర్ట్ డిపార్ట్‌మెంట్‌ను సంప్రదించండి.",
+
+dashTransportBtn:"ట్రాన్స్‌పోర్ట్ అడగండి",
+
+dashExamLabel:"పరీక్షల సమాచారం",
+
+dashExamValue:
+"పరీక్షల షెడ్యూల్ కోసం అధికారిక కాలేజీ నోటీస్ బోర్డును చెక్ చేయండి.",
+
+dashExamBtn:"పరీక్ష సమాచారం",
+
+dashActionsLabel:"త్వరిత చర్యలు",
+
+academicService:"అకాడమిక్ సహాయం",
+
+examService:"పరీక్షల సమాచారం",
+
+noticeService:"నోటీసులు",
+
+transportService:"ట్రాన్స్‌పోర్ట్",
+
+facultyService:"ఫ్యాకల్టీ సహాయం",
+
+contactService:"సంప్రదింపు సహాయం"
+
+}
+
+};
+
+
+/* =========================
+   YEAR LISTS
+========================= */
+
+const yearLists={
+
+english:{
+
+year1:[
+"💻 Programming fundamentals",
+"🐍 C/Python/Java basics",
+"🧩 Basic Data Structures concepts",
+"🗣️ Communication skills",
+"📚 Core engineering subjects",
+"🖥️ Basic computer skills",
+"🎯 Building a strong academic foundation"
+],
+
+year2:[
+"🐍 Java/Python development",
+"🧩 Data Structures",
+"🗄️ Database concepts",
+"🌐 Web development basics",
+"🧑‍💻 Git and GitHub",
+"🛠️ Mini projects",
+"🧠 Problem solving",
+"💻 Technical skill development"
+],
+
+year3:[
+"💻 Advanced technical skills",
+"📚 Advanced Data Structures",
+"🛠️ Project development",
+"🏢 Internship preparation",
+"🌐 Industry-oriented skills",
+"🧠 Coding practice",
+"🧑‍💻 GitHub projects",
+"📝 Resume preparation",
+"🎯 Placement preparation"
+],
+
+year4:[
+"💼 Placement preparation",
+"🧠 Aptitude",
+"💻 Coding preparation",
+"🎯 Technical interviews",
+"🎤 HR interviews",
+"📄 Resume improvement",
+"🗣️ Mock interviews",
+"🏢 Job preparation",
+"💼 Internship opportunities",
+"🎓 Higher studies guidance",
+"🚀 Career planning"
+]
+
+},
+
+telugu:{
+
+year1:[
+"💻 Programming fundamentals",
+"🐍 C/Python/Java basics",
+"🧩 Basic Data Structures concepts",
+"🗣️ Communication skills",
+"📚 Core engineering subjects",
+"🖥️ Basic computer skills",
+"🎯 Strong academic foundation"
+],
+
+year2:[
+"🐍 Java/Python development",
+"🧩 Data Structures",
+"🗄️ Database concepts",
+"🌐 Web development basics",
+"🧑‍💻 Git మరియు GitHub",
+"🛠️ Mini projects",
+"🧠 Problem solving",
+"💻 Technical skill development"
+],
+
+year3:[
+"💻 Advanced technical skills",
+"📚 Advanced Data Structures",
+"🛠️ Project development",
+"🏢 Internship preparation",
+"🌐 Industry-oriented skills",
+"🧠 Coding practice",
+"🧑‍💻 GitHub projects",
+"📝 Resume preparation",
+"🎯 Placement preparation"
+],
+
+year4:[
+"💼 Placement preparation",
+"🧠 Aptitude",
+"💻 Coding preparation",
+"🎯 Technical interviews",
+"🎤 HR interviews",
+"📄 Resume improvement",
+"🗣️ Mock interviews",
+"🏢 Job preparation",
+"💼 Internship opportunities",
+"🎓 Higher studies guidance",
+"🚀 Career planning"
+]
+
+}
+
+};
+
+
+/* =========================
+   SET LIST
+========================= */
+
+function setList(id,items){
+
+    const list=$(id);
+
+    if(!list){
+        return;
+    }
+
+    list.innerHTML="";
+
+    items.forEach(function(item){
+
+        const li=document.createElement("li");
+
+        li.innerText=item;
+
+        list.appendChild(li);
+
+    });
+}
+
+
+/* =========================
+   UPDATE LANGUAGE
+========================= */
+
+function applyLanguage(){
+
+    const t=T[language];
+
+    Object.keys(t).forEach(function(id){
+
+        const element=$(id);
+
+        if(element){
+            element.innerText=t[id];
+        }
+
+    });
+
+    $("question").placeholder=t.placeholder;
+
+    const lists=yearLists[language];
+
+    setList("year1List",lists.year1);
+    setList("year2List",lists.year2);
+    setList("year3List",lists.year3);
+    setList("year4List",lists.year4);
+
+    updateStudentProfile();
+
+    const dark=document.body.classList.contains("dark");
+
+    $("theme").innerText=
+        dark ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+    $("loginTheme").innerText=
+        dark ? "☀️ Light" : "🌙 Dark";
+
+}
+
+
+/* =========================
+   LANGUAGE BUTTONS
+========================= */
+
+function english(){
+
+    language="english";
+
+    applyLanguage();
+
+}
+
+function telugu(){
+
+    language="telugu";
+
+    applyLanguage();
+
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+function darkMode(){
+
+    document.body.classList.toggle("dark");
+
+    applyLanguage();
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function updateStudentProfile(){
+
+    if(!currentStudent){
+        return;
+    }
+
+    $("profileName").innerText=currentStudent.name;
+
+    $("profileRoll").innerText=currentStudent.roll;
+
+    $("profileDepartment").innerText=currentStudent.department;
+
+    $("profileYear").innerText=currentStudent.year;
+
+    $("profileCollege").innerText=currentStudent.college;
+
+    $("dashboardDepartment").innerText=
+        currentStudent.department;
+
+    $("dashboardBadge").innerText=
+        language==="telugu"
+        ? currentStudent.department+" విద్యార్థి"
+        : currentStudent.department+" Student";
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginStudent(event){
+
+    if(event){
+        event.preventDefault();
+    }
+
+    const name=$("studentName").value.trim();
+
+    const roll=$("rollNumber").value.trim();
+
+    const department=$("department").value;
+
+    const year=$("year").value;
+
+    if(!name || !roll){
+
+        alert(
+            language==="telugu"
+            ? "దయచేసి Student Name మరియు Roll Number నమోదు చేయండి."
+            : "Please enter Student Name and Roll Number."
+        );
+
+        return false;
+    }
+
+    currentStudent={
+
+        name:name,
+
+        roll:roll,
+
+        department:department,
+
+        year:year,
+
+        college:"Sri Sivani College of Engineering"
+
+    };
+
+    updateStudentProfile();
+    updateOpportunityRecommendation();
+
+    $("loginPage").style.display="none";
+
+    $("app").style.display="block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    $("question").focus();
+
+    return false;
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logoutStudent(){
+
+    currentStudent=null;
+
+    $("app").style.display="none";
+
+    $("loginPage").style.display="flex";
+
+    $("loginForm").reset();
+
+    $("department").value="AI&ML";
+
+    $("year").value="2nd Year";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================
+   CHAT MESSAGE
+========================= */
+
+function addMessage(type,text){
+
+    const chat=$("chat");
+
+    if(!chat){
+        return;
+    }
+
+    const div=document.createElement("div");
+
+    div.className="message "+type;
+
+    div.innerText=text;
+
+    chat.appendChild(div);
+
+    chat.scrollTop=chat.scrollHeight;
+
+}
+
+
+/* =========================
+   NORMALIZE
+========================= */
+
+function normalize(text){
+
+    return text
+        .toLowerCase()
+        .replace(/[?!.,;]/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+
+}
+
+
+function hasAny(text,words){
+
+    return words.some(function(word){
+
+        return text.includes(word);
+
+    });
+
+}
+
+
+/* =========================
+   CHATBOT
+========================= */
+
+function getAnswer(question){
+
+    const q=normalize(question);
+
+    const teluguMode=language==="telugu";
+
+
+    /* GREETING */
+
+    if(
+        hasAny(q,[
+            "hello",
+            "hi ",
+            "hey",
+            "హాయ్",
+            "హలో",
+            "నమస్కారం"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 నమస్కారం! నేను QuickCampus AI. మీ క్యాంపస్ గురించి ఏ ప్రశ్న అయినా అడగండి."
+
+        : "🤖 Hello! I am QuickCampus AI. Ask me anything about your campus.";
+
+    }
+
+
+    /* PROFILE */
+
+    if(
+        hasAny(q,[
+            "my profile",
+            "student profile",
+            "my details",
+            "my information",
+            "నా ప్రొఫైల్",
+            "నా వివరాలు"
+        ])
+    ){
+
+        if(!currentStudent){
+
+            return teluguMode
+
+            ? "🤖 ముందుగా Student Login చేయండి."
+
+            : "🤖 Please login first.";
+
+        }
+
+        return teluguMode
+
+        ?
+
+        "🤖 మీ ప్రొఫైల్: పేరు - "+
+        currentStudent.name+
+        ", రోల్ నంబర్ - "+
+        currentStudent.roll+
+        ", విభాగం - "+
+        currentStudent.department+
+        ", సంవత్సరం - "+
+        currentStudent.year+
+        ", కాలేజీ - "+
+        currentStudent.college+
+
+        "."
+
+        :
+
+        "🤖 Your profile: Name - "+
+        currentStudent.name+
+        ", Roll Number - "+
+        currentStudent.roll+
+        ", Department - "+
+        currentStudent.department+
+        ", Year - "+
+        currentStudent.year+
+        ", College - "+
+        currentStudent.college+
+        ".";
+
+    }
+
+
+    /* PAI */
+
+    if(
+        hasAny(q,[
+            "who teaches pai",
+            "pai evaru",
+            "pai evaru teach",
+            "pai teach",
+            "pai ఎవరు",
+            "పై ఎవరు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 "
+
+        : "🤖 ";
+
+    }
+
+
+    /* PROGRAMMING LANGUAGES */
+
+    if(
+        hasAny(q,[
+            "who teaches programming languages",
+            "programming languages evaru",
+            "programming languages teach",
+            "programming languages ఎవరు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 "
+
+        : "🤖 ";
+
+    }
+
+
+    /* ADVANCED DATA STRUCTURES */
+
+    if(
+        hasAny(q,[
+            "advanced data structures",
+            "advanced data structure",
+            "advanced ds",
+            "అడ్వాన్స్డ్ డేటా"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 "
+
+        : "🤖 ";
+
+    }
+
+
+    /* HOD */
+
+    if(
+        hasAny(q,[
+            "who is the ai&ml hod",
+            "who is ai&ml hod",
+            "ai&ml hod",
+            "ai ml hod",
+            "aiml hod",
+            "who is hod",
+            "hod evaru",
+            "hod ఎవరు",
+            "హెచ్ఓడి",
+            "హెచ్ఓడీ",
+            "విభాగాధిపతి"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 AI&ML విభాగాధిపతి: ప్రదీప్ సర్."
+
+        : "🤖 AI&ML HOD: P. Pradeep Kumar.";
+
+    }
+
+
+    /* FACULTY */
+
+    if(
+        hasAny(q,[
+            "ai&ml faculty",
+            "ai ml faculty",
+            "aiml faculty",
+            "faculty members",
+            "who are the faculty",
+            "who is the faculty",
+            "who are faculty",
+            "faculty evaru",
+            "faculty evvaru",
+            "faculty ఎవరు",
+            "ఫ్యాకల్టీ",
+            "అధ్యాపకులు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 ఫ్యాకల్టీ: ప్రదీప్ సర్ (HOD), Hima Bindhu Madam మరియు Rajesh Sir."
+
+        : "🤖 Faculty: P. Pradeep Kumar, Y. Jagadeesh Kumar, K. Venu Gopal, M. Srinivas Naidu, S. Sudeer Kumar, M. Hima Bindhu, K. Suma, D. Shilpa, and B. Jhansi.";
+
+    }
+
+
+    /* HIMA */
+
+    if(
+        hasAny(q,[
+            "hima bindhu",
+            "hima",
+            "హిమ బిందు",
+            "హిమ"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 "
+
+        : "🤖 ";
+
+    }
+
+    /* RAJESH */
+
+    if(
+        hasAny(q,[
+            "rajesh sir",
+            "rajesh",
+            "రాజేష్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 "
+
+        : "🤖 ";
+
+    }
+
+
+    /* 1ST YEAR */
+
+    if(
+        hasAny(q,[
+            "1st year",
+            "first year",
+            "year 1",
+            "1st-year",
+            "1st year lo",
+            "1st year em",
+            "what should i learn in 1st",
+            "what should i focus on in 1st",
+            "మొదటి సంవత్సరం",
+            "1వ సంవత్సరం"
+        ])
+    ){
+
+        return "🤖 "+
+        (
+            teluguMode
+            ? yearAnswers.y1.te
+            : yearAnswers.y1.en
+        );
+
+    }
+
+
+    /* 2ND YEAR */
+
+    if(
+        hasAny(q,[
+            "2nd year",
+            "second year",
+            "year 2",
+            "2nd-year",
+            "2nd year lo",
+            "2nd year em",
+            "what skills should i learn in 2nd",
+            "what should i focus on in 2nd",
+            "రెండవ సంవత్సరం",
+            "2వ సంవత్సరం"
+        ])
+    ){
+
+        return "🤖 "+
+        (
+            teluguMode
+            ? yearAnswers.y2.te
+            : yearAnswers.y2.en
+        );
+
+    }
+
+
+    /* 3RD YEAR */
+
+    if(
+        hasAny(q,[
+            "3rd year",
+            "third year",
+            "year 3",
+            "3rd-year",
+            "3rd year lo",
+            "3rd year em",
+            "what should i learn in 3rd",
+            "what should i focus on in 3rd",
+            "what skills are important for 3rd",
+            "మూడవ సంవత్సరం",
+            "3వ సంవత్సరం",
+            "మూడో సంవత్సరం"
+        ])
+    ){
+
+        return "🤖 "+
+        (
+            teluguMode
+            ? yearAnswers.y3.te
+            : yearAnswers.y3.en
+        );
+
+    }
+
+
+    /* 4TH YEAR */
+
+    if(
+        hasAny(q,[
+            "4th year",
+            "fourth year",
+            "year 4",
+            "4th-year",
+            "4th year lo",
+            "4th year em",
+            "what should i do in 4th",
+            "what should i focus on in 4th",
+            "నాలుగవ సంవత్సరం",
+            "4వ సంవత్సరం",
+            "నాలుగో సంవత్సరం"
+        ])
+    ){
+
+        return "🤖 "+
+        (
+            teluguMode
+            ? yearAnswers.y4.te
+            : yearAnswers.y4.en
+        );
+
+    }
+
+
+    /* INTERNSHIP */
+
+    if(
+        hasAny(q,[
+            "internship",
+            "internships",
+            "prepare for internship",
+            "prepare for internships",
+            "internship preparation",
+            "ఇంటర్న్",
+            "ఇంటర్న్‌షిప్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 Internship కోసం technical skills, coding practice, projects, GitHub profile మరియు resumeను బలోపేతం చేయండి. మీరు కోరుకునే roleకు అవసరమైన skills నేర్చుకుని practical projects చూపించండి."
+
+        : "🤖 For internships, strengthen technical skills, coding practice, projects, your GitHub profile and resume. Learn skills relevant to the role you want and demonstrate them through practical projects.";
+
+    }
+
+
+    /* PLACEMENT */
+
+    if(
+        hasAny(q,[
+            "placement",
+            "placements",
+            "prepare for placement",
+            "prepare for placements",
+            "skills are needed for placements",
+            "placement ki",
+            "ప్లేస్‌మెంట్",
+            "ప్లేస్మెంట్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 Placements కోసం Aptitude, Coding, Data Structures, Technical Concepts, Communication, Resume మరియు Mock Interviewsపై regularగా practice చేయండి."
+
+        : "🤖 For placements, practice aptitude, coding, Data Structures, technical concepts, communication, resume improvement and mock interviews regularly.";
+
+    }
+
+
+    /* TIMING */
+
+    if(
+        hasAny(q,[
+            "timing",
+            "time",
+            "college time",
+            "college timing",
+            "8:50",
+            "4:10",
+            "సమయం",
+            "టైమింగ్",
+            "ఎప్పుడు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 కాలేజీ సమయం ఉదయం 8:50 AM నుండి సాయంత్రం 4:10 PM వరకు."
+
+        : "🤖 College Timing: 8:50 AM - 4:10 PM.";
+
+    }
+
+
+    /* DEPARTMENTS */
+
+    if(
+        hasAny(q,[
+            "department",
+            "departments",
+            "branch",
+            "branches",
+            "course",
+            "courses",
+            "cse",
+            "ece",
+            "eee",
+            "mechanical",
+            "civil",
+            "విభాగం",
+            "విభాగాలు",
+            "బ్రాంచ్",
+            "కోర్సు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 కాలేజీలో CSE, AI&ML, ECE, EEE, Mechanical మరియు Civil విభాగాలు ఉన్నాయి."
+
+        : "🤖 Departments: CSE, AI&ML, ECE, EEE, Mechanical and Civil.";
+
+    }
+
+
+    /* EXAM */
+
+    if(
+        hasAny(q,[
+            "exam",
+            "exams",
+            "examination",
+            "test",
+            "exam date",
+            "exam schedule",
+            "when is exam",
+            "పరీక్ష",
+            "ఎగ్జామ్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 పరీక్షల షెడ్యూల్ కోసం కాలేజీ అధికారిక నోటీస్ బోర్డును చెక్ చేయండి."
+
+        : "🤖 Please check the official college notice board for the latest examination schedule.";
+
+    }
+
+
+    /* NOTICE */
+
+    if(
+        hasAny(q,[
+            "notice",
+            "notices",
+            "announcement",
+            "announcements",
+            "latest notice",
+            "event",
+            "events",
+            "function",
+            "program",
+            "నోటీస్",
+            "నోటీసు",
+            "ఈవెంట్",
+            "ఈవెంట్స్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 తాజా నోటీసులు మరియు ఈవెంట్స్ కోసం కాలేజీ అధికారిక నోటీస్ బోర్డును చెక్ చేయండి."
+
+        : "🤖 Please check the official college notice board for the latest notices and events.";
+
+    }
+
+
+    /* TRANSPORT */
+
+    if(
+        hasAny(q,[
+            "bus",
+            "buses",
+            "transport",
+            "college bus",
+            "bus facility",
+            "bus timings",
+            "రవాణా",
+            "బస్",
+            "బస్సు"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 బస్ మరియు ట్రాన్స్‌పోర్ట్ సమాచారం కోసం కాలేజీ ట్రాన్స్‌పోర్ట్ డిపార్ట్‌మెంట్‌ను సంప్రదించండి."
+
+        : "🤖 For bus and transport information, please contact the college transport department.";
+
+    }
+
+
+    /* ACADEMIC */
+
+    if(
+        hasAny(q,[
+            "academic",
+            "study",
+            "subject",
+            "academics",
+            "చదువు",
+            "అకాడమిక్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 అకాడమిక్ సహాయం కోసం సంబంధిత విభాగం లేదా ఫ్యాకల్టీని సంప్రదించండి."
+
+        : "🤖 For academic help, please contact the concerned department or faculty member.";
+
+    }
+
+
+    /* CONTACT */
+
+    if(
+        hasAny(q,[
+            "contact",
+            "help",
+            "support",
+            "సహాయం",
+            "కాంటాక్ట్"
+        ])
+    ){
+
+        return teluguMode
+
+        ? "🤖 సహాయం కోసం సంబంధిత డిపార్ట్‌మెంట్, ఫ్యాకల్టీ లేదా కాలేజీ కార్యాలయాన్ని సంప్రదించండి."
+
+        : "🤖 For help, please contact the concerned department, faculty member, or college office.";
+
+    }
+
+
+    /* UNKNOWN */
+
+    return teluguMode
+
+    ? "🤖 క్షమించండి. ఈ ప్రశ్నకు ప్రస్తుతం సమాచారం లేదు. మరొక క్యాంపస్ ప్రశ్న అడగండి."
+
+    : "🤖 Sorry, I don't have information about that yet. Please ask another campus question.";
+
+}
+
+
+/* =========================
+   ASK
+========================= */
+
+function ask(){
+
+    const input=$("question");
+
+    if(!input){
+        return;
+    }
+
+    const question=input.value.trim();
+
+    if(!question){
+
+        input.focus();
+
+        return;
+    }
+
+    addMessage(
+        "user",
+        "👤 "+question
+    );
+
+    input.value="";
+
+    const oldTyping=$("typing");
+
+    if(oldTyping){
+        oldTyping.remove();
+    }
+
+    const typing=document.createElement("div");
+
+    typing.className="message ai typing";
+
+    typing.id="typing";
+
+    typing.innerText=
+        language==="telugu"
+        ? "🤖 AI టైప్ చేస్తోంది..."
+        : "🤖 AI is typing...";
+
+    $("chat").appendChild(typing);
+
+    $("chat").scrollTop=$("chat").scrollHeight;
+
+    if(typingTimer){
+        clearTimeout(typingTimer);
+    }
+
+    typingTimer=setTimeout(function(){
+
+        const currentTyping=$("typing");
+
+        if(currentTyping){
+            currentTyping.remove();
+        }
+
+        addMessage(
+            "ai",
+            getAnswer(question)
+        );
+
+    },350);
+
+}
+
+
+/* =========================
+   QUICK QUESTIONS
+========================= */
+
+const quickMap={
+
+timing:[
+"కాలేజీ టైమింగ్ ఎంత?",
+"What is the college timing?"
+],
+
+department:[
+"కాలేజీలో ఏ ఏ విభాగాలు ఉన్నాయి?",
+"What departments are available?"
+],
+
+hod:[
+"AI&ML విభాగాధిపతి ఎవరు?",
+"Who is the AI&ML HOD?"
+],
+
+faculty:[
+"faculty evaru?",
+"Who are the faculty?"
+],
+
+hima:[
+"Hima Bindhu Madam ఏమి బోధిస్తారు?",
+"What does Hima Bindhu Madam teach?"
+],
+
+rajesh:[
+"Rajesh Sir ఏమి బోధిస్తారు?",
+"What does Rajesh Sir teach?"
+],
+
+year1:[
+"1st year lo em nerchukovali?",
+"What should I learn in 1st year?"
+],
+
+year2:[
+"2nd year lo em cheyyali?",
+"What should I do in 2nd year?"
+],
+
+year3:[
+"3rd year lo em nerchukovali?",
+"What should I learn in 3rd year?"
+],
+
+year4:[
+"4th year lo em cheyyali?",
+"What should I do in 4th year?"
+],
+
+exam:[
+"పరీక్షల సమాచారం కావాలి",
+"I need exam information"
+],
+
+notice:[
+"తాజా నోటీసులు ఏమిటి?",
+"What are the latest notices?"
+],
+
+transport:[
+"కాలేజీ బస్ సమాచారం కావాలి",
+"I want college bus information"
+]
+
+};
+
+
+function quick(type){
+
+    if(!quickMap[type]){
+        return;
+    }
+
+    $("question").value=
+        language==="telugu"
+        ? quickMap[type][0]
+        : quickMap[type][1];
+
+    ask();
+
+}
+
+
+/* =========================
+   DASHBOARD ACTION
+========================= */
+
+function dashboardAction(type){
+
+    quick(type);
+
+    const input=$("question");
+
+    if(input){
+
+        input.focus();
+
+        input.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+    }
+
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+const serviceMap={
+
+academic:[
+"నాకు అకాడమిక్ సహాయం కావాలి",
+"I need academic help"
+],
+
+exam:[
+"నాకు పరీక్షల సమాచారం కావాలి",
+"I need exam information"
+],
+
+notice:[
+"నాకు తాజా నోటీసులు కావాలి",
+"I want the latest notices"
+],
+
+transport:[
+"నాకు ట్రాన్స్‌పోర్ట్ సమాచారం కావాలి",
+"I need transport information"
+],
+
+faculty:[
+"faculty evaru?",
+"Who are the faculty?"
+],
+
+contact:[
+"నాకు సహాయం కావాలి",
+"I need contact help"
+]
+
+};
+
+
+function service(type){
+
+    if(!serviceMap[type]){
+        return;
+    }
+
+    $("question").value=
+        language==="telugu"
+        ? serviceMap[type][0]
+        : serviceMap[type][1];
+
+    ask();
+
+}
+
+
+/* =========================
+   CLEAR CHAT
+========================= */
+
+function clearChat(){
+
+    if(typingTimer){
+        clearTimeout(typingTimer);
+    }
+
+    const typing=$("typing");
+
+    if(typing){
+        typing.remove();
+    }
+
+    $("chat").innerHTML=
+
+        '<div class="message ai">'+
+
+        (
+            language==="telugu"
+            ? "🤖 చాట్ క్లియర్ అయింది. మీ క్యాంపస్ ప్రశ్న అడగండి!"
+            : "🤖 Chat cleared. Ask your campus question!"
+        )
+
+        +
+
+        '</div>';
+
+}
+
+
+
+/* =========================
+   STUDENT OPPORTUNITIES
+========================= */
+const opportunityData=[
+ {id:"y1-workshop",year:"1st Year",name:"Sample Beginner Coding Workshop",type:"Workshop",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"1st Year",team:"Individual",desc:"Sample external workshop focused on programming fundamentals, basic problem solving and getting started with technical learning.",link:null},
+ {id:"y1-coding",year:"1st Year",name:"Sample Beginner Coding Competition",type:"Coding Competition",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"1st Year",team:"Individual",desc:"Sample external coding opportunity for beginners to practise basic programming and problem-solving skills.",link:null},
+ {id:"y1-tech",year:"1st Year",name:"Sample Technical Learning Event",type:"Technical Event",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"External Venue",mode:"Offline",eligibility:"Students",team:"Individual",desc:"Sample external technical event for exploring technologies, developer tools and engineering fundamentals.",link:null},
+
+ {id:"y2-hackathon",year:"2nd Year",name:"Sample Student Hackathon",type:"Hackathon",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"2nd Year",team:"Team",desc:"Sample external hackathon for building a working solution, collaborating with teammates and presenting a technical idea.",link:null},
+ {id:"y2-coding",year:"2nd Year",name:"Sample Coding Competition",type:"Coding Competition",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"Students",team:"Individual",desc:"Sample external coding competition to strengthen DSA, algorithms and competitive problem-solving practice.",link:null},
+ {id:"y2-workshop",year:"2nd Year",name:"Sample Technical Workshop",type:"Workshop",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"External Venue",mode:"Offline",eligibility:"Students",team:"Individual",desc:"Sample external workshop for developing practical technical skills and learning current tools or technologies.",link:null},
+
+ {id:"y3-hackathon",year:"3rd Year",name:"Sample Advanced Hackathon",type:"Hackathon",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"3rd Year",team:"Team",desc:"Sample external hackathon aimed at turning technical knowledge into a stronger project and presentation.",link:null},
+ {id:"y3-internship",year:"3rd Year",name:"Sample Internship Opportunity",type:"Internship",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Not specified",mode:"Online",eligibility:"3rd Year",team:"Individual",desc:"Sample external internship listing for gaining practical experience. No company, role, date or application link is claimed.",link:null},
+ {id:"y3-project",year:"3rd Year",name:"Sample Project Competition",type:"Project Competition",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"External Venue",mode:"Offline",eligibility:"3rd Year",team:"Team",desc:"Sample external project competition for demonstrating a technical project, implementation and presentation skills.",link:null},
+ {id:"y3-paper",year:"3rd Year",name:"Sample Paper Presentation",type:"Paper Presentation",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"External Venue",mode:"Offline",eligibility:"Students",team:"Individual / Team",desc:"Sample external paper-presentation opportunity for practising technical research, documentation and presentation.",link:null},
+
+ {id:"y4-internship",year:"4th Year",name:"Sample Career Internship",type:"Internship",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Not specified",mode:"Online",eligibility:"4th Year",team:"Individual",desc:"Sample external internship opportunity focused on gaining practical experience before graduation. No company or application link is claimed.",link:null},
+ {id:"y4-placement",year:"4th Year",name:"Sample Placement Coding Challenge",type:"Coding Competition",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"Online",mode:"Online",eligibility:"4th Year",team:"Individual",desc:"Sample external coding challenge for placement-oriented DSA, algorithms and timed problem solving.",link:null},
+ {id:"y4-career",year:"4th Year",name:"Sample Career & Placement Event",type:"Career Event",organizer:"Not specified in sample",date:"Not specified",time:"Not specified",location:"External Venue",mode:"Offline",eligibility:"4th Year",team:"Individual",desc:"Sample external career event for learning about recruitment processes, career preparation and professional opportunities.",link:null}
+];
+
+const opportunityRecommendations={
+ "1st Year":"1st Year → beginner coding events, workshops and technical learning events.",
+ "2nd Year":"2nd Year → hackathons, coding competitions and technical workshops.",
+ "3rd Year":"3rd Year → hackathons, internships, project competitions, paper presentations and technical events.",
+ "4th Year":"4th Year → internships, placement-related coding competitions and career events."
+};
+
+function escapeHtml(value){
+ return String(value??"").replace(/[&<>"']/g,function(ch){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[ch];});
+}
+
+function renderOpportunities(){
+ const q=($('opportunitySearch').value||'').toLowerCase().trim();
+ const year=$('opYearFilter').value;
+ const type=$('opTypeFilter').value;
+ const mode=$('opModeFilter').value;
+ const loc=$('opLocationFilter').value;
+ const elig=$('opEligibilityFilter').value;
+
+ const list=opportunityData.filter(function(o){
+   const haystack=Object.values(o).filter(v=>v!==null).join(' ').toLowerCase();
+   return (!q||haystack.includes(q))
+     &&(!year||o.year===year)
+     &&(!type||o.type===type)
+     &&(!mode||o.mode===mode)
+     &&(!loc||o.location===loc)
+     &&(!elig||o.eligibility===elig||o.eligibility==="Students");
+ });
+
+ const grid=$('opportunityGrid');
+ grid.innerHTML='';
+ $('opportunityEmpty').hidden=list.length>0;
+
+ list.forEach(function(o){
+   const card=document.createElement('article');
+   card.className='opportunity-card';
+   card.innerHTML=`
+     <div class="opportunity-top">
+       <span class="demo-badge">SAMPLE OPPORTUNITY</span>
+       <span class="year-badge">${escapeHtml(o.year)}</span>
+     </div>
+     <h3>${escapeHtml(o.name)}</h3>
+     <div class="op-meta">
+       <span>🎯 ${escapeHtml(o.type)}</span>
+       <span>🌐 ${escapeHtml(o.mode)}</span>
+       <span>📍 ${escapeHtml(o.location)}</span>
+       <span>👥 ${escapeHtml(o.eligibility)}</span>
+     </div>
+     <p class="op-desc">${escapeHtml(o.desc)}</p>
+     <div class="op-actions">
+       <button class="op-btn" type="button" data-op-id="${escapeHtml(o.id)}">View Details</button>
+     </div>`;
+   grid.appendChild(card);
+ });
+
+ grid.querySelectorAll('[data-op-id]').forEach(function(btn){
+   btn.addEventListener('click',function(){
+     openOpportunityDetails(btn.dataset.opId);
+   });
+ });
+}
+
+function updateOpportunityRecommendation(){
+ const year=currentStudent?currentStudent.year:"";
+ $('opportunityRecommendation').innerText=
+   opportunityRecommendations[year]||"Choose your year at login to see year-wise recommendations.";
+ if(currentStudent){
+   $('opYearFilter').value=currentStudent.year;
+   renderOpportunities();
+ }
+}
+
+function openOpportunityDetails(id){
+ const o=opportunityData.find(function(item){return item.id===id;});
+ if(!o)return;
+
+ $('opportunityModalTitle').innerText=o.name;
+ $('opportunityModalContent').innerHTML=`
+   <div class="modal-note"><strong>Sample record:</strong> This opportunity is a UI sample only. It does not claim a real organizer, date, company, event, registration URL or currently available opening.</div>
+   <div class="modal-grid">
+     <div class="modal-item"><strong>Recommended year</strong><span>${escapeHtml(o.year)}</span></div>
+     <div class="modal-item"><strong>Opportunity type</strong><span>${escapeHtml(o.type)}</span></div>
+     <div class="modal-item"><strong>Organizer</strong><span>${escapeHtml(o.organizer)}</span></div>
+     <div class="modal-item"><strong>Date</strong><span>${escapeHtml(o.date)}</span></div>
+     <div class="modal-item"><strong>Time</strong><span>${escapeHtml(o.time)}</span></div>
+     <div class="modal-item"><strong>Mode</strong><span>${escapeHtml(o.mode)}</span></div>
+     <div class="modal-item"><strong>Location</strong><span>${escapeHtml(o.location)}</span></div>
+     <div class="modal-item"><strong>Eligibility</strong><span>${escapeHtml(o.eligibility)}</span></div>
+     <div class="modal-item"><strong>Participation</strong><span>${escapeHtml(o.team)}</span></div>
+     <div class="modal-item"><strong>Registration</strong><span>No link in sample</span></div>
+   </div>
+   <p class="op-desc">${escapeHtml(o.desc)}</p>
+   <p class="op-desc"><strong>Before publishing:</strong> replace this sample record with verified external event details and an official registration source.</p>`;
+ $('opportunityModal').hidden=false;
+ document.body.style.overflow='hidden';
+}
+
+function closeOpportunityDetails(){
+ $('opportunityModal').hidden=true;
+ document.body.style.overflow='';
+}
+
+/* =========================
+   CAMPUS SOS
+========================= */
+const sosGuidance={
+ academic:{title:'📚 Academic Problem',text:'For faculty-related queries, mentor guidance and academic issues, start with the concerned department or the faculty information already available in this project.',action:'faculty listed: P. Pradeep Kumar, Y. Jagadeesh Kumar, K. Venu Gopal, M. Srinivas Naidu, S. Sudeer Kumar, M. Hima Bindhu, K. Suma, D. Shilpa and B. Jhansi.'},
+ lost:{title:'🔎 Lost Something',text:'Use this as the Lost & Found guidance point. Record or report the item through the appropriate campus process. A dedicated lost-and-found contact is not stored in the current project, so no contact is invented here.',action:'If your ID card is lost, contact the appropriate college office/department according to the official campus process.'},
+ technical:{title:'💻 Technical Problem',text:'For lab computer, Wi-Fi/network, software, projector or equipment problems, contact the appropriate lab/IT support available through your college. The current project does not contain a verified IT contact, so none is fabricated.',action:'Describe the exact device/lab problem when reporting it.'},
+ navigation:{title:'🗺️ Campus Navigation',text:'Campus SOS can act as a directory for important areas. The current project verifies campus departments and general campus information, but it does not store exact room/map coordinates.',action:'Known directory areas: Departments, AI&ML department and college information. Library, labs, seminar hall, administration and examination locations need verified campus data before exact directions are published.'},
+ document:{title:'📄 Need a Document',text:'For bonafide certificates, ID cards, certificates and academic documents, contact the appropriate college office/department. Exact office procedure is not stored in the current project.',action:'Ask the college office for the current document process rather than relying on an unverified instruction.'}
+};
+function showSos(type){const g=sosGuidance[type];if(!g)return;$('sosResult').hidden=false;$('sosResult').innerHTML='<h3>'+g.title+'</h3><p>'+g.text+'</p><strong>'+g.action+'</strong>';$('sosDetails').innerHTML='<h3>'+g.title+'</h3><p>'+g.text+'</p><p><strong>Next step:</strong> '+g.action+'</p>';$('sosResult').scrollIntoView({behavior:'smooth',block:'center'});}
+function smartSos(){const q=($('sosSearch').value||'').toLowerCase();let type='';if(/lost|missing|stolen|id card|ఐడి|పోయి/.test(q))type='lost';else if(/computer|lab|wifi|wi-fi|network|software|projector|technical|కంప్యూటర్|వైఫై/.test(q))type='technical';else if(/library|lab|department|seminar|office|exam section|where is|location|ఎక్కడ|లైబ్రరీ/.test(q))type='navigation';else if(/bonafide|certificate|document|id card|academic document|బోనఫైడ్|సర్టిఫికెట్/.test(q))type='document';else if(/faculty|teacher|mentor|academic|subject|faculty-related|ఫ్యాకల్టీ|మెంటర్/.test(q))type='academic';if(type)showSos(type);else{$('sosResult').hidden=false;$('sosResult').innerHTML='<h3>🧭 Help category not identified</h3><p>Try keywords such as “lost ID card”, “lab computer”, “library”, “faculty issue” or “bonafide certificate”.</p>';}}
+
+/* =========================
+   INITIALIZATION
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    $("loginForm").addEventListener(
+        "submit",
+        loginStudent
+    );
+
+    $("askButton").addEventListener(
+        "click",
+        ask
+    );
+
+    $("clearButton").addEventListener(
+        "click",
+        clearChat
+    );
+
+    $("logoutBtn").addEventListener(
+        "click",
+        logoutStudent
+    );
+
+    $("englishBtn").addEventListener(
+        "click",
+        english
+    );
+
+    $("teluguBtn").addEventListener(
+        "click",
+        telugu
+    );
+
+    $("theme").addEventListener(
+        "click",
+        darkMode
+    );
+
+    $("loginEnglish").addEventListener(
+        "click",
+        english
+    );
+
+    $("loginTelugu").addEventListener(
+        "click",
+        telugu
+    );
+
+    $("loginTheme").addEventListener(
+        "click",
+        darkMode
+    );
+
+    $("opportunitiesNavBtn").addEventListener("click",function(){ $("studentOpportunities").scrollIntoView({behavior:"smooth"}); });
+    $("sosNavBtn").addEventListener("click",function(){ $("campusSOS").scrollIntoView({behavior:"smooth"}); });
+
+    $("opportunitySearch").addEventListener("input",renderOpportunities);
+    ["opYearFilter","opTypeFilter","opModeFilter","opLocationFilter","opEligibilityFilter"].forEach(function(id){ $(id).addEventListener("change",renderOpportunities); });
+    $("opportunityModalClose").addEventListener("click",closeOpportunityDetails);
+    $("opportunityModal").addEventListener("click",function(event){if(event.target.id==="opportunityModal"){closeOpportunityDetails();}});
+    document.addEventListener("keydown",function(event){if(event.key==="Escape"&&!$("opportunityModal").hidden){closeOpportunityDetails();}});
+    $("sosSearchBtn").addEventListener("click",smartSos);
+    $("sosSearch").addEventListener("keydown",function(event){if(event.key==="Enter"){event.preventDefault();smartSos();}});
+    document.querySelectorAll("[data-sos]").forEach(function(button){button.addEventListener("click",function(){showSos(button.dataset.sos);});});
+    renderOpportunities();
+    updateOpportunityRecommendation();
+
+
+    $("question").addEventListener(
+        "keydown",
+        function(event){
+
+            if(event.key==="Enter"){
+
+                event.preventDefault();
+
+                ask();
+
+            }
+
+        }
+    );
+
+
+    document
+    .querySelectorAll("[data-quick]")
+    .forEach(function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                quick(
+                    button.dataset.quick
+                );
+
+            }
+        );
+
+    });
+
+
+    document
+    .querySelectorAll("[data-action]")
+    .forEach(function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                dashboardAction(
+                    button.dataset.action
+                );
+
+            }
+        );
+
+    });
+
+
+    document
+    .querySelectorAll("[data-service]")
+    .forEach(function(button){
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                service(
+                    button.dataset.service
+                );
+
+            }
+        );
+
+    });
+
+
+    applyLanguage();
+
+});
+
+</script>
+
+</body>
+</html>
